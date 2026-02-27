@@ -399,33 +399,33 @@ ros2 bag info rosbag2_<timestamp>                               # 情報確認
 ## 到達確認チェックリスト
 
 ### 環境・基礎
-- [ ] WSL2上でROS 2 Humbleが正常に動作する
-- [ ] `source /opt/ros/humble/setup.bash` の意味と必要性を理解している
-- [ ] ROS 2の基本CLIコマンド（`ros2 node`, `ros2 topic`, `ros2 service`, `ros2 action`）を使える
+- [x] WSL2上でROS 2 Humbleが正常に動作する (2025-02-27)
+- [x] `source /opt/ros/humble/setup.bash` の意味と必要性を理解している (2025-02-27)
+- [x] ROS 2の基本CLIコマンド（`ros2 node`, `ros2 topic`, `ros2 service`, `ros2 action`）を使える (2025-02-27)
 - [ ] rqt_graph でノード間の通信を可視化できる
 
 ### Publisher / Subscriber
-- [ ] Publisherノードをゼロから書ける（コピペせずに）
-- [ ] Subscriberノードをゼロから書ける（コピペせずに）
+- [x] Publisherノードをゼロから書ける（コピペせずに） (2025-02-27)
+- [x] Subscriberノードをゼロから書ける（コピペせずに） (2025-02-27)
 - [ ] メッセージ型（std_msgs, geometry_msgs）を適切に選択・使用できる
 - [ ] QoSの基本設定を理解し、適切なプロファイルを選択できる
-- [ ] `ros2 topic echo` でデバッグできる
+- [x] `ros2 topic echo` でデバッグできる (2025-02-27)
 
 ### Service / Action
-- [ ] Serviceサーバー/クライアントを実装できる
-- [ ] Actionの概念（Goal, Feedback, Result）を説明できる
-- [ ] Topic, Service, Actionの使い分けを判断できる
+- [x] Serviceサーバー/クライアントを実装できる (2025-02-27)
+- [x] Actionの概念（Goal, Feedback, Result）を説明できる (2025-02-27)
+- [x] Topic, Service, Actionの使い分けを判断できる (2025-02-27)
 
 ### tf2
-- [ ] 座標フレームの概念を説明できる
-- [ ] Static TransformとDynamic Transformの違いを理解している
-- [ ] TransformBroadcasterとTransformListenerを使える
-- [ ] rviz2でフレームを可視化できる
+- [x] 座標フレームの概念を説明できる (2025-02-27)
+- [x] Static TransformとDynamic Transformの違いを理解している (2025-02-27)
+- [x] TransformBroadcasterとTransformListenerを使える (2025-02-27)
+- [x] rviz2でフレームを可視化できる (2025-02-27)
 
 ### パッケージ・ビルド
-- [ ] ROS 2パッケージを作成できる
-- [ ] colcon buildでビルド・インストールできる
-- [ ] launchファイルで複数ノードを管理できる
+- [x] ROS 2パッケージを作成できる (2025-02-27)
+- [x] colcon buildでビルド・インストールできる (2025-02-27)
+- [x] launchファイルで複数ノードを管理できる (2025-02-27)
 - [ ] パラメータをYAMLファイルで設定できる
 - [ ] ros2 bagでデータを記録・再生できる
 
