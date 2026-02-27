@@ -1,0 +1,357 @@
+# =============================================================================
+# Physical AI Learning Project - .gitignore
+# =============================================================================
+
+# =============================================================================
+# Python
+# =============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre
+.pyre/
+
+# pytype
+.pytype/
+
+# Ruff
+.ruff_cache/
+
+# =============================================================================
+# ROS 2
+# =============================================================================
+
+# Colcon build artifacts
+build/
+install/
+log/
+.colcon/
+
+# ROS bag files (can be large)
+*.bag
+*.db3
+rosbag2_*/
+
+# ROS generated files
+*.pyc
+*.pyo
+
+# =============================================================================
+# C / C++
+# =============================================================================
+
+# Object files
+*.o
+*.obj
+*.ko
+*.elf
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+_deps/
+
+# =============================================================================
+# IDE / Editor
+# =============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains (CLion, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# =============================================================================
+# OS Generated Files
+# =============================================================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# AI / ML Models (large binary files)
+# =============================================================================
+
+# ONNX models
+*.onnx
+
+# TensorRT engine files
+*.engine
+*.trt
+*.plan
+
+# GGUF quantized models (llama.cpp format)
+*.gguf
+
+# Large binary model files
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Hugging Face cache
+.cache/huggingface/
+
+# Model directories (commonly used names)
+models/
+checkpoints/
+weights/
+pretrained/
+
+# =============================================================================
+# NVIDIA Isaac Sim
+# =============================================================================
+
+# Isaac Sim cache
+.isaac_sim_cache/
+_isaac_sim/
+*.usd.tmp
+*.usda.tmp
+*.usdc.tmp
+
+# Omniverse cache
+.nvidia-omniverse/
+.local/share/ov/
+.nv/
+
+# Isaac Sim logs
+isaac_sim_logs/
+
+# Nucleus cache
+nucleus-cache/
+
+# =============================================================================
+# Jupyter Notebooks
+# =============================================================================
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Jupyter runtime files
+.jupyter/
+
+# =============================================================================
+# Docker
+# =============================================================================
+
+# Docker volumes
+docker-volumes/
+
+# Docker override
+docker-compose.override.yml
+
+# =============================================================================
+# Environment & Secrets
+# =============================================================================
+
+# Environment variable files
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Secret keys / credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+secrets.yaml
+secrets.yml
+
+# =============================================================================
+# Data Files (potentially large)
+# =============================================================================
+
+# Point cloud data
+*.pcd
+*.ply
+*.las
+*.laz
+
+# Large datasets
+data/
+datasets/
+*.csv.gz
+*.parquet
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# =============================================================================
+# Miscellaneous
+# =============================================================================
+
+# Compressed files
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.orig
+
+# Profiling data
+*.prof
+*.lprof
