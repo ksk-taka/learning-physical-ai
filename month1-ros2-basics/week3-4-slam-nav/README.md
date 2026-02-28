@@ -415,30 +415,30 @@ def generate_launch_description():
 ## 到達確認チェックリスト
 
 ### Gazebo
-- [ ] Gazeboが正常に起動・動作する（WSL2環境）
+- [x] Gazeboが正常に起動・動作する（WSL2環境） (2026-02-28)
 - [ ] SDFファイルでカスタムワールドを定義できる
 - [ ] ros_gzブリッジでGazeboとROS 2を接続できる
-- [ ] Gazebo内のロボットをROS 2トピックで制御できる
+- [x] Gazebo内のロボットをROS 2トピックで制御できる (2026-02-28)
 
 ### URDF
-- [ ] URDFの構造（Link, Joint）を理解している
-- [ ] 差動駆動ロボットのURDFを作成できる
+- [x] URDFの構造（Link, Joint）を理解している (2025-02-27)
+- [x] 差動駆動ロボットのURDFを作成できる (2025-02-27)
 - [ ] センサー（LiDAR, カメラ, IMU）をURDFに追加できる
 - [ ] Xacroでモジュラーなロボット定義を書ける
-- [ ] robot_state_publisherでtf2ツリーを公開できる
+- [x] robot_state_publisherでtf2ツリーを公開できる (2025-02-27)
 
 ### SLAM
-- [ ] SLAMの原理を説明できる
-- [ ] LaserScanデータの構造を理解している
-- [ ] slam_toolboxで地図を構築できる
-- [ ] 地図の保存と読み込みができる
+- [x] SLAMの原理を説明できる (2026-02-28)
+- [x] LaserScanデータの構造を理解している (2026-02-28)
+- [x] slam_toolboxで地図を構築できる (2026-02-28)
+- [x] 地図の保存と読み込みができる (2026-02-28)
 - [ ] SLAMパラメータの基本的な調整ができる
 
 ### Navigation
-- [ ] Nav2のアーキテクチャを説明できる
-- [ ] Global PlannerとLocal Controllerの役割を理解している
+- [x] Nav2のアーキテクチャを説明できる (2026-02-28)
+- [x] Global PlannerとLocal Controllerの役割を理解している (2026-02-28)
 - [ ] コストマップの概念を理解している
-- [ ] rviz2から目標地点を設定して自律移動させられる
+- [x] rviz2から目標地点を設定して自律移動させられる (2026-02-28)
 - [ ] プログラムからナビゲーションゴールを送信できる
 - [ ] Recovery Behaviorsの概念を理解している
 
