@@ -402,13 +402,13 @@ ros2 bag info rosbag2_<timestamp>                               # 情報確認
 - [x] WSL2上でROS 2 Humbleが正常に動作する (2025-02-27)
 - [x] `source /opt/ros/humble/setup.bash` の意味と必要性を理解している (2025-02-27)
 - [x] ROS 2の基本CLIコマンド（`ros2 node`, `ros2 topic`, `ros2 service`, `ros2 action`）を使える (2025-02-27)
-- [ ] rqt_graph でノード間の通信を可視化できる
+- [x] rqt_graph でノード間の通信を可視化できる (2026-03-01)
 
 ### Publisher / Subscriber
 - [x] Publisherノードをゼロから書ける（コピペせずに） (2025-02-27)
 - [x] Subscriberノードをゼロから書ける（コピペせずに） (2025-02-27)
-- [ ] メッセージ型（std_msgs, geometry_msgs）を適切に選択・使用できる
-- [ ] QoSの基本設定を理解し、適切なプロファイルを選択できる
+- [x] メッセージ型（std_msgs, geometry_msgs）を適切に選択・使用できる (2026-03-01)
+- [x] QoSの基本設定を理解し、適切なプロファイルを選択できる (2026-03-01)
 - [x] `ros2 topic echo` でデバッグできる (2025-02-27)
 
 ### Service / Action
@@ -426,8 +426,8 @@ ros2 bag info rosbag2_<timestamp>                               # 情報確認
 - [x] ROS 2パッケージを作成できる (2025-02-27)
 - [x] colcon buildでビルド・インストールできる (2025-02-27)
 - [x] launchファイルで複数ノードを管理できる (2025-02-27)
-- [ ] パラメータをYAMLファイルで設定できる
-- [ ] ros2 bagでデータを記録・再生できる
+- [x] パラメータをYAMLファイルで設定できる (2026-03-01)
+- [x] ros2 bagでデータを記録・再生できる (2026-03-01)
 
 ---
 

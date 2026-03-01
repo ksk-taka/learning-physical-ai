@@ -98,6 +98,74 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py \
 ターミナル4: rviz2（または Nav2 launch が自動起動）
 ```
 
-### Week 3-4 進捗サマリー
+### Week 3-4 進捗サマリー（Day 1）
 - チェックリスト: 11/22 完了（50%）
 - 残り: SDF カスタムワールド, ros_gz ブリッジ, Xacro, センサー追加, SLAM パラメータ調整, コストマップ, プログラムからのNav2制御, Recovery Behaviors, 統合デモ
+
+---
+
+## 2026-03-01: Day 2 — Python ノード開発 + Week 1-2 残り消化
+
+### 開発環境セットアップ
+- WSL2 (Ubuntu-22.04) に Node.js 20 + Claude Code をインストール
+- VSCode の WSL 拡張でリモート接続 → WSL2 上のファイルを直接編集可能に
+- ROS 2 パッケージ `my_robot_pkg` を作成（`~/colcon_ws/src/`）
+
+### 実施内容
+
+#### 1. LaserScan 処理ノード（scan_processor.py）
+- `/scan` トピックを Subscribe し、前後左右の距離と最近傍障害物を表示
+- `sensor_msgs/msg/LaserScan` の構造を理解:
+  - `ranges[360]`: 1度刻み、反時計回りの距離配列
+  - `inf`: 障害物なし（レーザーが何にも当たらなかった）
+  - `angle_min + index * angle_increment` で実角度を計算
+
+#### 2. Obstacle Avoidance ノード（obstacle_avoidance.py）
+- `/scan` を Subscribe → 判断 → `/cmd_vel` に Publish の自律制御パターン
+- 前方60度の最小距離が 0.5m 以下で回避旋回、それ以外は直進
+- `geometry_msgs/msg/Twist`: `linear.x`（前後速度）, `angular.z`（回転速度）
+- Gazebo 上でロボットが壁を避けながら自律走行することを確認
+
+#### 3. Nav2 ゴール送信ノード（nav2_goal_sender.py）
+- `nav2_msgs/action/NavigateToPose` の Action Client
+- Goal 送信 → Feedback（現在位置）受信 → Result（到達）受信
+- yaw → quaternion 変換: `z = sin(yaw/2)`, `w = cos(yaw/2)`
+- PoseStamped: `frame_id`（座標系 'map'）+ position + orientation
+
+#### 4. rqt_graph（Week 1-2 残り）
+- Nav2 起動中に `rqt_graph` で全ノード構成を可視化
+- nav2_goal_sender → bt_navigator → planner_server / controller_server の接続を確認
+
+#### 5. ros2 bag（Week 1-2 残り）
+- `/scan` と `/cmd_vel` を 10 秒間記録 → SQLite DB に保存
+- `ros2 bag play` で再生 → Gazebo 停止中でもセンサーデータが流れることを確認
+- FW のロジアナ波形録画＆再生と同じ概念
+
+#### 6. QoS（Week 1-2 残り）
+- `ros2 topic info /scan --verbose` で QoS プロファイルを確認
+- RELIABLE vs BEST_EFFORT: 信頼性 vs 低遅延のトレードオフ
+- VOLATILE vs TRANSIENT_LOCAL: 過去データの配信有無
+- FW でいうと UART+ACK/NAK vs 生 UART
+
+#### 7. パラメータ YAML（Week 1-2 残り）
+- Nav2 の `burger.yaml` を確認: ノード名 → `ros__parameters` → パラメータ値
+- `params_file:=` で launch 時にカスタムパラメータを渡せる
+- FW の `config.h` / `#define` を YAML に外出しした形
+
+### 学んだ ROS 2 パターン（まとめ）
+```
+Subscribe(sensor) → 判断ロジック → Publish(cmd)   ... Topic パターン
+Action Client → Goal → Feedback → Result           ... Action パターン
+YAML → ros__parameters → ノード設定               ... パラメータパターン
+ros2 bag record/play                                ... データ記録/再生
+rqt_graph                                           ... ノード構成可視化
+```
+
+### Week 1-2 完了状況
+- チェックリスト: **21/21 完了（100%）**
+- 全項目クリア
+
+### Week 3-4 進捗サマリー（Day 2）
+- チェックリスト: 12/22 完了（55%）
+- 新規完了: プログラムからのNav2ゴール送信
+- 残り: SDF カスタムワールド, ros_gz ブリッジ, Xacro, センサー追加, SLAM パラメータ調整, コストマップ, Recovery Behaviors, 統合 launch, 統合デモ, デモ動画
