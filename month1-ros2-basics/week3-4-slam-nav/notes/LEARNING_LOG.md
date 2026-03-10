@@ -169,3 +169,79 @@ rqt_graph                                           ... ノード構成可視化
 - チェックリスト: 12/22 完了（55%）
 - 新規完了: プログラムからのNav2ゴール送信
 - 残り: SDF カスタムワールド, ros_gz ブリッジ, Xacro, センサー追加, SLAM パラメータ調整, コストマップ, Recovery Behaviors, 統合 launch, 統合デモ, デモ動画
+
+---
+
+## 2026-03-10: Day 3 — SDF カスタムワールド + ros_gz ブリッジ理解
+
+### 実施内容
+
+#### 1. SDF カスタムワールド作成（custom_house.sdf）
+- 10m x 8m の家を SDF で定義（`worlds/custom_house.sdf`）
+- 内壁 2 枚で左部屋・廊下・右部屋の 3 エリアに分割
+- 各内壁にドア開口部（0.8m）を設置
+- 家具・障害物を配置: テーブル、椅子、棚、箱、柱
+
+**ワールドレイアウト:**
+```
+ ┌─────────────────────────────┐
+ │  左の部屋     │ 廊下 │  右の部屋     │
+ │  テーブル     │      │  棚          │
+ │  椅子        ドア    ドア           │
+ │              │  柱  │  箱          │
+ └─────────────────────────────┘
+```
+
+**SDF の構造:**
+- `<world>`: 環境全体（物理エンジン、ライティング含む）
+- `<model>`: 各オブジェクト（壁、家具など）、`<static>true</static>` で固定
+- `<link>`: `<visual>` + `<collision>` + `<inertial>` の 3 要素
+- `<pose>`: `x y z roll pitch yaw` で位置・姿勢を指定
+
+**学んだこと:**
+- SDF は URDF の上位互換（ワールド全体を記述可能）
+- URDF = ロボット定義、SDF = ワールド + ロボット定義
+- `<static>true</static>` で物理演算の対象外にできる（壁・家具は動かないため）
+- ドア開口は壁を 2 つに分割して隙間を作る手法で実現
+- FW でいうと SDF = テストベンチ定義（テスト環境のセットアップ記述）
+
+#### 2. launch ファイル作成（custom_world.launch.py）
+- `gzserver.launch.py` に `world` 引数でカスタム SDF を渡す
+- TurtleBot3 の `robot_state_publisher` と `spawn_turtlebot3` を再利用
+- `setup.py` に `data_files` で `launch/`, `worlds/`, `urdf/`, `config/` をインストール対象に追加
+- `colcon build` でビルド成功を確認
+
+**パッケージ構成の変更:**
+```
+my_robot_pkg/
+├── config/           # (new) パラメータ YAML
+├── launch/           # (new) launch ファイル
+│   └── custom_world.launch.py
+├── my_robot_pkg/     # Python ノード
+│   ├── scan_processor.py
+│   ├── obstacle_avoidance.py
+│   └── nav2_goal_sender.py
+├── urdf/             # (new) URDF/Xacro
+├── worlds/           # (new) SDF ワールド
+│   └── custom_house.sdf
+├── package.xml
+└── setup.py          # data_files 追加
+```
+
+#### 3. ros_gz ブリッジ概念理解
+- 現在の構成: Gazebo Classic (gazebo11) + `gazebo_ros` プラグイン → ROS 2 トピック自動生成
+- `ros_gz_bridge` は Ignition Gazebo (Gazebo Sim) 用の手動ブリッジ
+- Gazebo Classic: プラグインが SPI ペリフェラル内蔵のように直接接続
+- Gazebo Sim: ros_gz_bridge が外部変換 IC のように中継
+
+**ブリッジのコマンド例（Gazebo Sim の場合）:**
+```bash
+ros2 run ros_gz_bridge parameter_bridge \
+    /cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist \
+    /scan@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan
+```
+
+### Week 3-4 進捗サマリー（Day 3）
+- チェックリスト: 14/22 完了（64%）
+- 新規完了: SDF カスタムワールド定義、ros_gz ブリッジ概念理解
+- 残り: Xacro, センサー追加, SLAM パラメータ調整, コストマップ, Recovery Behaviors, 統合 launch, 統合デモ, デモ動画

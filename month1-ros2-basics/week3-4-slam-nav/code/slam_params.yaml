@@ -1,0 +1,53 @@
+# SLAM Toolbox パラメータ設定
+# カスタムハウスワールド用に調整
+slam_toolbox:
+  ros__parameters:
+    # === フレーム設定 ===
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_footprint
+    scan_topic: /scan
+    use_sim_time: true
+
+    # === 解像度 ===
+    # 5cm/pixel: 室内環境に適切（細かすぎるとメモリ増・粗すぎると壁が潰れる）
+    resolution: 0.05
+
+    # === レーザー範囲 ===
+    # カスタムロボットの LiDAR に合わせて設定
+    max_laser_range: 10.0    # LiDAR の最大距離 [m]
+    minimum_time_interval: 0.5
+
+    # === スキャン追加条件 ===
+    # ロボットがこれだけ動いたら新しいスキャンを地図に追加
+    minimum_travel_distance: 0.3    # [m] デフォルト0.5 → 室内は狭いので小さく
+    minimum_travel_heading: 0.3     # [rad] ≈17度
+
+    # === ループクロージング ===
+    # 同じ場所に戻った時に誤差を修正する機能
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0    # ループ検出の最大距離 [m]
+
+    # === スキャンマッチング ===
+    # どの程度正確にスキャンを一致させるか
+    scan_buffer_size: 10
+    scan_buffer_maximum_scan_distance: 10.0
+    link_match_minimum_response_fine: 0.1
+    link_scan_maximum_distance: 1.5
+
+    # === ソルバー設定 ===
+    # 最適化の精度と速度のトレードオフ
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    # === モード設定 ===
+    mode: mapping    # mapping モード（localization モードもある）
+
+    # === パラメータ調整ガイド ===
+    # 地図がぼやける → resolution を小さく (0.03)、minimum_travel_distance を小さく (0.2)
+    # 地図が壊れる → minimum_travel_heading を大きく (0.5)、ゆっくり動かす
+    # ループが閉じない → loop_search_maximum_distance を大きく
+    # 処理が重い → max_laser_range を小さく、scan_buffer_size を小さく
